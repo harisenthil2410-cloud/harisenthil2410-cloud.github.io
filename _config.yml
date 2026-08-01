@@ -14,8 +14,6 @@ baseurl: ""
 markdown: kramdown
 permalink: /log/:year/:month/:day/:title/
 
-collections_dir: .
-
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
