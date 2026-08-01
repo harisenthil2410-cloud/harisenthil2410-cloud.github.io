@@ -1,0 +1,66 @@
+---
+layout: default
+---
+<div class="wrap">
+  <div class="post-head">
+    <div class="status-tag">
+      {% if page.status == "completed" %}
+        <span class="led led--green"></span> Completed
+      {% else %}
+        <span class="led led--amber"></span> {{ page.status | default: "In progress" }}
+      {% endif %}
+    </div>
+    <h1>{{ page.title }}</h1>
+    {% if page.dek %}<p class="dek">{{ page.dek }}</p>{% endif %}
+
+    <div class="post-meta">
+      <span><strong>Logged</strong> {{ page.date | date: "%d %b %Y" }}</span>
+      {% if page.type %}<span><strong>Type</strong> {{ page.type }}</span>{% endif %}
+      {% if page.org %}<span><strong>Certified by</strong> {{ page.org }}</span>{% endif %}
+      {% if page.tags %}
+        <span class="tags">
+          {% for t in page.tags %}<span class="tag">{{ t }}</span>{% endfor %}
+        </span>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="post-body">
+    {{ content }}
+
+    {% if page.images %}
+      <div class="gallery">
+        {% for img in page.images %}
+          <figure>
+            <img src="{{ img.src | relative_url }}" alt="{{ img.caption | default: page.title }}" loading="lazy">
+            {% if img.caption %}<figcaption>{{ img.caption }}</figcaption>{% endif %}
+          </figure>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if page.report_pdf %}
+      <div class="download-box">
+        <span class="led led--amber"></span>
+        <span>Full project report — <a href="{{ page.report_pdf | relative_url }}" target="_blank">download PDF</a></span>
+      </div>
+    {% endif %}
+
+    {% if page.video_url or page.demo_url or page.github_url %}
+      <div class="post-meta" style="margin-top:8px;">
+        {% if page.demo_url %}<span><strong>Live demo</strong> <a href="{{ page.demo_url }}" target="_blank" rel="noopener">{{ page.demo_url }}</a></span>{% endif %}
+        {% if page.video_url %}<span><strong>Video</strong> <a href="{{ page.video_url }}" target="_blank" rel="noopener">watch</a></span>{% endif %}
+        {% if page.github_url %}<span><strong>Code</strong> <a href="{{ page.github_url }}" target="_blank" rel="noopener">repo</a></span>{% endif %}
+      </div>
+    {% endif %}
+  </div>
+
+  <nav class="post-nav">
+    {% if page.previous %}
+      <a href="{{ page.previous.url | relative_url }}">&larr; {{ page.previous.title }}</a>
+    {% else %}<span></span>{% endif %}
+    {% if page.next %}
+      <a href="{{ page.next.url | relative_url }}">{{ page.next.title }} &rarr;</a>
+    {% endif %}
+  </nav>
+</div>
