@@ -1,0 +1,39 @@
+title: Haripriya S
+tagline: "Electronics & Communication Engineering — Embedded Systems / IoT / ML"
+description: >-
+  Project logs and notes from an ECE student working across embedded systems,
+  IoT, and machine learning — build write-ups, circuits, and coursework.
+author: Haripriya S
+email: ""
+github_username: harisenthil2410-cloud
+resume_path: /resume.pdf
+
+url: "https://harisenthil2410-cloud.github.io"
+baseurl: ""
+
+markdown: kramdown
+permalink: /log/:year/:month/:day/:title/
+
+collections_dir: .
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "project"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
